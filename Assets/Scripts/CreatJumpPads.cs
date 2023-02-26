@@ -15,7 +15,6 @@ public class CreatJumpPads : MonoBehaviour
         cursorTransform = this.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && maxJumpPads < 30f)
@@ -25,7 +24,7 @@ public class CreatJumpPads : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            GameObject x = Instantiate(dotPrefab, (Vector2)spawnPosition, Quaternion.AngleAxis(angle + 90, Vector3.forward));
+            GameObject x = Instantiate(dotPrefab, (Vector2)spawnPosition.normalized, Quaternion.AngleAxis(angle + 90, Vector3.forward));
             maxJumpPads++;
             UiManager.jumpPadCount++;
         }
